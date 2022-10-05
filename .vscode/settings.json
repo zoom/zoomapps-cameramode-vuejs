@@ -1,0 +1,10 @@
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.tabSize": 2,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "vue"
+    ]
+}

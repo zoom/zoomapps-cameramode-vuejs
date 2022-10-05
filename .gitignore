@@ -1,0 +1,9 @@
+.env
+server/
+
+# javscript puke
+node_modules/
+
+# parcel
+.parcel-cache/
+dist/
