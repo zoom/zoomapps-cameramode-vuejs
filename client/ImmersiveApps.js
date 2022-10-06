@@ -24,6 +24,7 @@ import { createApp, reactive } from "vue";
 import ImmersiveApps from "./ImmersiveApps.vue";
 import { deepAssignWithOptions } from "./deepAssign.js";
 const deepAssign = deepAssignWithOptions({ proto: false });
+
 let config = reactive({ media: {}, runningContext: "" });
 let messageBus = reactive({ message: null });
 
@@ -48,25 +49,20 @@ const capabilities = [
 ];
 
 window.addEventListener("load", () => {
-  window._app = app;
-  if (zoomSdk) {
-    zoomSdk
-      .config({ capabilities: capabilities })
-      .then((c) => {
-        deepAssign(config, c);
-      })
-      .catch(immersiveApp.onZoomSdkError);
-    zoomSdk.onMyMediaChange((result) => {
-      if (result?.media) {
-        console.log("onMyMediaChange", result);
-        deepAssign(config.media || {}, result.media);
-      }
-    });
-    zoomSdk.onMessage((msg) => {
-      console.log("onMessage", msg);
-      messageBus.message = msg;
-    });
-  } else {
-    console.error("This app only works in the Zoom Client");
-  }
+  zoomSdk
+    .config({ capabilities: capabilities })
+    .then((c) => {
+      deepAssign(config, c);
+    })
+    .catch(immersiveApp.onZoomSdkError);
+  zoomSdk.onMyMediaChange((result) => {
+    if (result?.media) {
+      console.log("onMyMediaChange", result);
+      deepAssign(config.media || {}, result.media);
+    }
+  });
+  zoomSdk.onMessage((msg) => {
+    console.log("onMessage", msg);
+    messageBus.message = msg;
+  });
 });
