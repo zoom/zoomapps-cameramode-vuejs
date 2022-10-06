@@ -40,7 +40,6 @@ const capabilities = [
   "drawParticipant",
   "drawWebView",
   "getRunningContext",
-  "getSupportedJsApis",
   "getUserContext",
   "onMessage",
   "onMyMediaChange",
