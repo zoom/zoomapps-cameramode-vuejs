@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "parcel build",
-    "dev": "parcel watch --no-hmr"
+    "dev": "parcel"
   },
   "source": "client/index.html",
   "devDependencies": {
